@@ -1,0 +1,10 @@
+Site COO - version multi-pages
+
+Deploiement GitHub Pages :
+1. Dans le depot du site principal (COO), supprimer l'ancien index.html.
+2. Deposer tous les fichiers de ce dossier a la racine (y compris .nojekyll).
+3. Commit + push. Le site est a https://children-of-oblivion.github.io/COO/
+
+Pages : index (accueil), presentation, lore, relations, archives, registre, effectifs, recrutement, acces, legal.
+Fichiers partages : style.css, script.js, search-index.js (recherche), favicon.png.
+Le depot Archives-Noires reste inchange.

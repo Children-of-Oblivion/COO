@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Recrutement - Children of Oblivion - COO-UNIT-01</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@300;400;500;600;700&family=Crimson+Pro:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-page="recrutement">
+
+
+<div class="scanlines"></div>
+
+<div class="hud-frame">
+  <span class="hud-corner tl"></span>
+  <span class="hud-corner tr"></span>
+  <span class="hud-corner bl"></span>
+  <span class="hud-corner br"></span>
+</div>
+<div class="hud-tag bl-tag"><span class="hud-dot"></span><span id="hud-clock">--:--:--</span></div>
+<div class="hud-tag br-tag"><span id="hud-opid">OMBRE-????</span></div>
+
+<div class="boot-screen" id="boot" onclick="skipBoot()">
+  <div class="boot-inner">
+    <div class="boot-line" id="boot-text"></div>
+    <div class="boot-progress"><div class="boot-progress-bar" id="boot-bar"></div></div>
+    <div class="boot-id" id="boot-id"></div>
+    <div class="boot-skip">cliquer pour passer</div>
+  </div>
+</div>
+
+<script>try{if(sessionStorage.getItem('coo_booted')){var _b=document.getElementById('boot');if(_b)_b.parentNode.removeChild(_b);}}catch(e){}</script>
+
+<div class="session-lock" id="session-lock">
+  <div class="session-lock-inner">
+    <div class="session-lock-title">Session expirée</div>
+    <div class="session-lock-text">Accès révoqué par le système après cinq minutes de connexion.<br>Toute activité restante sur ce terminal a été journalisée.</div>
+    <button class="session-lock-btn" onclick="reconnectSession()">Se reconnecter</button>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo" onclick="showPage('accueil')" onkeydown="if(event.key==='Enter')showPage('accueil')" role="link" tabindex="0" title="Retour à l'accueil">
+      <span class="logo-img" onclick="skullClick()" role="img" aria-label="Children of Oblivion"></span>
+      <span class="glitch">COO-UNIT-01</span>
+    </div>
+    <ul class="nav-links">
+      <li><button data-page="accueil" onclick="showPage('accueil')">Accueil</button></li>
+      <li><button data-page="presentation" onclick="showPage('presentation')">Présentation</button></li>
+      <li><button data-page="lore" onclick="showPage('lore')">Lore</button></li>
+      <li><button data-page="relations" onclick="showPage('relations')">Relations</button></li>
+      <li><button data-page="archives" onclick="showPage('archives')">Archives</button></li>
+      <li><button data-page="registre" onclick="showPage('registre')">Registre</button></li>
+      <li><button data-page="effectifs" onclick="showPage('effectifs')">Effectifs</button></li>
+      <li><button class="active" data-page="recrutement" onclick="showPage('recrutement')">Recrutement</button></li>
+      <li><button data-page="acces" onclick="showPage('acces')" class="nav-restreint">Accès restreint</button></li>
+    </ul>
+    <div class="nav-right">
+      <button class="nav-search" onclick="openSearch()" aria-label="Rechercher" title="Rechercher (Ctrl+K)"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><line x1="16.5" y1="16.5" x2="21" y2="21"></line></svg></button>
+      <div class="session-timer" id="session-timer" title="Temps de session restant">05:00</div>
+      <button class="nav-burger" onclick="toggleNav()" aria-label="Menu">☰</button>
+      <a class="nav-discord" href="https://discord.gg/EjdVtPbWyr" target="_blank" rel="noopener">Discord</a>
+      <div class="nav-status">
+        <div class="status-dot"></div>
+        ACTIF
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div id="page-recrutement" class="page active">
+  <div class="page-header">
+    <div class="page-header-inner">
+      <div class="page-eyebrow">☠ COO-UNIT-01 · Recrutement officiel</div>
+      <h2 class="page-title">Deviens une Ombre</h2>
+      <p class="page-desc">Nous ne cherchons pas des héros. Nous cherchons des ombres.</p>
+      <span class="stamp stamp-accent">Dossier de candidature</span>
+    </div>
+  </div>
+
+  <div class="content-wrap">
+    <div class="recrut-intro">
+      <p>Les Children of Oblivion recrutent des opérateurs prêts à travailler dans l'obscurité, sans gloire, sans reconnaissance. Juste l'efficacité et la loyauté. Si tu penses avoir ce qu'il faut pour devenir une Ombre, lis attentivement ce qui suit.</p>
+    </div>
+
+    <div class="section-title">Ce que l'Oubli exige de toi</div>
+    <div class="recrut-criteria">
+      <div class="crit-card"><span class="crit-mark">▹</span><div><strong>Présence totale</strong><p>On ne recrute pas des silhouettes qui traversent le décor. Chaque Ombre existe pleinement, ou n'existe pas.</p></div></div>
+      <div class="crit-card"><span class="crit-mark">▹</span><div><strong>Respect de la hiérarchie et du Code de l'Ombre</strong><p>En opération, une seule voix commande. Le Code n'est pas négociable.</p></div></div>
+      <div class="crit-card"><span class="crit-mark">▹</span><div><strong>Loyauté envers le groupe avant tout</strong><p>On ne trahit jamais un frère d'ombre. C'est la règle la plus sacrée.</p></div></div>
+      <div class="crit-card"><span class="crit-mark">▹</span><div><strong>Discrétion</strong><p>Les ombres ne font pas de bruit. La discrétion est une compétence, pas une option.</p></div></div>
+    </div>
+
+    <div class="section-title">Le protocole d'admission</div>
+    <div class="recrut-steps">
+      <div class="step-row"><span class="step-num">1</span><div><strong>Étudie le Code de l'Ombre</strong><p>On ne rejoint pas les COO en l'ignorant. Connais les règles avant de les accepter, ou reste dehors.</p></div></div>
+      <div class="step-row"><span class="step-num">2</span><div><strong>Présente-toi sur le canal sécurisé</strong><p>Tout passe par là. Une présentation bâclée n'atteint jamais le bureau du Spectre Noir. Sois complet, sois honnête, c'est la première épreuve.</p></div></div>
+      <div class="step-row"><span class="step-num">3</span><div><strong>Attends qu'on te trouve</strong><p>Un Ombre Supérieur, ou le Spectre Noir lui-même, viendra à toi par le canal sécurisé. Ne cherche pas à précipiter les choses.</p></div></div>
+    </div>
+
+    <div class="recrut-cta">
+      <a class="btn btn-primary recrut-btn" href="https://discord.gg/EjdVtPbWyr" target="_blank" rel="noopener">Accéder au canal sécurisé</a>
+    </div>
+
+    <div class="lore-quote" style="margin-top:2.5rem;">
+      <p>"Nous ne te demandons pas qui tu étais. Nous attendons de voir qui tu vas devenir."</p>
+      <cite>- Spectre Noir</cite>
+    </div>
+  </div>
+
+  <footer>
+    <p class="footer-accent">☠ CHILDREN OF OBLIVION ☠</p>
+    <p>COO-UNIT-01 · Recrutement · L'Oubli n'est pas une punition. C'est une arme.</p>
+    <p class="footer-legal">
+      <a onclick="showPage('legal')">Mentions légales</a> ·
+      <a onclick="showPage('legal')">Confidentialité</a> ·
+      <a onclick="showPage('legal')">Crédits et licence</a>
+    </p>
+  </footer>
+</div>
+
+<!-- RECHERCHE -->
+<div class="search-overlay" id="search-overlay" onclick="if(event.target===this)closeSearch()">
+  <div class="search-box">
+    <input type="text" id="search-input" placeholder="Rechercher dans le dossier…" oninput="runSearch(this.value)" autocomplete="off" spellcheck="false">
+    <div class="search-results" id="search-results"></div>
+  </div>
+</div>
+
+<!-- MODALE BADGE -->
+<div class="modal-overlay" id="profil-modal" onclick="if(event.target===this)closeProfil()">
+  <div class="modal-box profil-box">
+    <button type="button" class="modal-close" onclick="closeProfil()" aria-label="Fermer">&times;</button>
+    <div class="profil-head">
+      <div class="profil-avatar" id="profil-avatar"></div>
+      <div>
+        <div class="profil-nom" id="profil-nom"></div>
+        <div class="profil-handle" id="profil-handle"></div>
+        <div class="profil-role" id="profil-role"></div>
+      </div>
+    </div>
+    <div class="profil-corps" id="profil-corps"></div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="badge-modal" onclick="if(event.target===this)closeBadge()">
+  <div class="modal-box">
+    <button type="button" class="modal-close" onclick="closeBadge()" aria-label="Fermer">×</button>
+    <div class="modal-eyebrow" id="badge-eyebrow">COO-UNIT-01 · Doctrine de l'Ombre</div>
+    <div class="modal-title" id="badge-title"></div>
+    <div class="modal-text" id="badge-text"></div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

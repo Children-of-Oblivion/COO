@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lore - Children of Oblivion - COO-UNIT-01</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@300;400;500;600;700&family=Crimson+Pro:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-page="lore">
+
+
+<div class="scanlines"></div>
+
+<div class="hud-frame">
+  <span class="hud-corner tl"></span>
+  <span class="hud-corner tr"></span>
+  <span class="hud-corner bl"></span>
+  <span class="hud-corner br"></span>
+</div>
+<div class="hud-tag bl-tag"><span class="hud-dot"></span><span id="hud-clock">--:--:--</span></div>
+<div class="hud-tag br-tag"><span id="hud-opid">OMBRE-????</span></div>
+
+<div class="boot-screen" id="boot" onclick="skipBoot()">
+  <div class="boot-inner">
+    <div class="boot-line" id="boot-text"></div>
+    <div class="boot-progress"><div class="boot-progress-bar" id="boot-bar"></div></div>
+    <div class="boot-id" id="boot-id"></div>
+    <div class="boot-skip">cliquer pour passer</div>
+  </div>
+</div>
+
+<script>try{if(sessionStorage.getItem('coo_booted')){var _b=document.getElementById('boot');if(_b)_b.parentNode.removeChild(_b);}}catch(e){}</script>
+
+<div class="session-lock" id="session-lock">
+  <div class="session-lock-inner">
+    <div class="session-lock-title">Session expirée</div>
+    <div class="session-lock-text">Accès révoqué par le système après cinq minutes de connexion.<br>Toute activité restante sur ce terminal a été journalisée.</div>
+    <button class="session-lock-btn" onclick="reconnectSession()">Se reconnecter</button>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo" onclick="showPage('accueil')" onkeydown="if(event.key==='Enter')showPage('accueil')" role="link" tabindex="0" title="Retour à l'accueil">
+      <span class="logo-img" onclick="skullClick()" role="img" aria-label="Children of Oblivion"></span>
+      <span class="glitch">COO-UNIT-01</span>
+    </div>
+    <ul class="nav-links">
+      <li><button data-page="accueil" onclick="showPage('accueil')">Accueil</button></li>
+      <li><button data-page="presentation" onclick="showPage('presentation')">Présentation</button></li>
+      <li><button class="active" data-page="lore" onclick="showPage('lore')">Lore</button></li>
+      <li><button data-page="relations" onclick="showPage('relations')">Relations</button></li>
+      <li><button data-page="archives" onclick="showPage('archives')">Archives</button></li>
+      <li><button data-page="registre" onclick="showPage('registre')">Registre</button></li>
+      <li><button data-page="effectifs" onclick="showPage('effectifs')">Effectifs</button></li>
+      <li><button data-page="recrutement" onclick="showPage('recrutement')">Recrutement</button></li>
+      <li><button data-page="acces" onclick="showPage('acces')" class="nav-restreint">Accès restreint</button></li>
+    </ul>
+    <div class="nav-right">
+      <button class="nav-search" onclick="openSearch()" aria-label="Rechercher" title="Rechercher (Ctrl+K)"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><line x1="16.5" y1="16.5" x2="21" y2="21"></line></svg></button>
+      <div class="session-timer" id="session-timer" title="Temps de session restant">05:00</div>
+      <button class="nav-burger" onclick="toggleNav()" aria-label="Menu">☰</button>
+      <a class="nav-discord" href="https://discord.gg/EjdVtPbWyr" target="_blank" rel="noopener">Discord</a>
+      <div class="nav-status">
+        <div class="status-dot"></div>
+        ACTIF
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div id="page-lore" class="page active">
+  <div class="page-header">
+    <div class="page-header-inner">
+      <div class="page-eyebrow">☠ COO-UNIT-01 · Dossier classifié</div>
+      <h2 class="page-title">Lore - Children of Oblivion</h2>
+      <p class="page-desc">Histoire, philosophie et chronologie du groupe mercenaire para-anomal le plus redouté des cercles SCP.</p>
+    </div>
+  </div>
+  <div class="content-wrap">
+    <div class="lore-nav">
+      <button class="active" onclick="showLore('origine', this)">Origine</button>
+      <button onclick="showLore('sept', this)">Les 7 de Lazare</button>
+      <button onclick="showLore('philosophie', this)">Philosophie</button>
+      <button onclick="showLore('serment', this)">Le Serment</button>
+      <button onclick="showLore('code', this)">Le Code de l'Ombre</button>
+      <button onclick="showLore('chronologie', this)">Chronologie</button>
+      <button onclick="showLore('spectre', this)">Le Spectre Noir</button>
+      <button onclick="showLore('faits', this)">Faits d'armes</button>
+      <button onclick="showLore('oubli', this)">L'Oubli</button>
+    </div>
+
+    <!-- ORIGINE -->
+    <div id="lore-origine" class="lore-section active">
+      <div class="lore-block">
+        <div class="lore-block-title">Naissance dans l'Oubli</div>
+        <p>Les Children of Oblivion ne sont pas nés d'une ambition ou d'une idéologie. Ils sont nés d'un massacre.</p>
+        <p>En <span class="redacted" onclick="this.classList.toggle('revealed')">████</span>, une unité d'intervention de la Fondation SCP désignée sous le nom de code <strong>Escadron Lazare</strong> fut envoyée pour contenir une entité de classe Keter dans les ruines d'une installation abandonnée en Europe de l'Est. La mission tourne mal. L'entité, classifiée SCP-<span class="redacted" onclick="this.classList.toggle('revealed')">████</span>, s'avère capable d'effacer la mémoire collective de ses victimes, les réduisant à des coques vides. La Fondation, jugeant l'Escadron compromis, décide de ne pas envoyer de renforts. Elle choisit l'oubli.</p>
+        <p>Seuls <strong>sept membres</strong> survivent. Abandonnés, radiés des registres, effacés de toute existence officielle, ils n'ont plus de nom, plus de passé. Juste la certitude d'avoir été sacrifiés.</p>
+      </div>
+      <div class="lore-quote">
+        <p>"Ils ont choisi de nous oublier. Très bien. Nous deviendrons ce qu'ils ont voulu faire de nous. Des ombres. Et les ombres ne meurent pas."</p>
+        <cite>- Premier Spectre Noir, lors de la fondation des COO</cite>
+      </div>
+      <div class="lore-block">
+        <div class="lore-block-title">La Décision</div>
+        <p>Plutôt que de chercher vengeance, les survivants prennent une décision froide : <em>devenir indispensables</em>. Si la Fondation et les autres factions se disputent le contrôle des anomalies, quelqu'un doit exécuter les tâches que personne n'ose officialiser. Quelqu'un doit opérer dans les angles morts.</p>
+        <p>Ils se nomment les <strong>Children of Oblivion</strong>, les Enfants de l'Oubli. L'Oubli n'est plus leur condamnation. C'est leur arme.</p>
+      </div>
+    </div>
+
+    <!-- PHILOSOPHIE -->
+    <div id="lore-philosophie" class="lore-section">
+      <div class="lore-block">
+        <div class="lore-block-title">Le Code de l'Ombre</div>
+        <p>Les COO ne servent aucune idéologie. Ils opèrent sur un principe simple : <strong>tout contrat a un prix, toute mission a une fin, et toute fin justifie les moyens nécessaires.</strong></p>
+        <p>Mais ce pragmatisme cache une règle non écrite, sacrée : <em>on ne trahit jamais un frère d'ombre.</em> C'est la seule ligne rouge. Elle a été violée une fois dans l'histoire du groupe. Cette histoire est désormais une légende que tous les nouveaux Fantômes entendent lors de leur intégration.</p>
+      </div>
+      <div class="pills">
+        <span class="pill accent">Neutralité idéologique</span>
+        <span class="pill accent">Loyauté interne absolue</span>
+        <span class="pill accent">Efficacité avant tout</span>
+        <span class="pill red">Zéro tolérance pour la trahison</span>
+      </div>
+      <div class="lore-block" style="margin-top:1.5rem;">
+        <div class="lore-block-title">La Doctrine de l'Oubli</div>
+        <p>Une mission réussie est une mission dont personne ne parle. Pas de traces, pas de témoins, pas de gloire. L'opérateur parfait est celui dont on ignore jusqu'à l'existence.</p>
+        <p>Cette doctrine influence tout, leur équipement sobre, leurs communications chiffrées, leurs noms de code numériques, et leur règle absolue de ne jamais revendiquer publiquement un contrat accompli. Certains outils du groupe ne servent d'ailleurs qu'à ça : effacer, littéralement, ce qui ne doit pas être vu.</p>
+      </div>
+    </div>
+
+    <!-- CHRONOLOGIE -->
+    <div id="lore-chronologie" class="lore-section">
+      <div class="lore-block">
+        <div class="lore-block-title">Chronologie des événements fondateurs</div>
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-date">An 0</div>
+            <div class="tl-dot"></div>
+            <div class="tl-content"><strong>Le Massacre de Lazare</strong>L'Escadron Lazare est sacrifié par la Fondation. Sept survivants errent hors de la zone de confinement, officiellement déclarés morts.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">An 0 +2m</div>
+            <div class="tl-dot"></div>
+            <div class="tl-content"><strong>Premier incident du Compteur</strong>Un des sept survivants disparaît sans un bruit, sans un témoin, sans une trace. Les six autres ne comprennent pas encore qu'il vient de leur donner un ordre : le sien.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">An 0 +3m</div>
+            <div class="tl-dot"></div>
+            <div class="tl-content"><strong>Fondation des COO</strong>Les survivants restants signent un accord dans une cache souterraine en <span class="redacted" onclick="this.classList.toggle('revealed')">████████</span>. Le premier Spectre Noir est désigné. Le nom "Children of Oblivion" est choisi.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">An 1</div>
+            <div class="tl-dot"></div>
+            <div class="tl-content"><strong>Premier contrat</strong>Élimination d'un agent double vendant des données au Chaos Insurgent. Commanditaire anonyme, on soupçonne la Fondation elle-même.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">An 3</div>
+            <div class="tl-dot"></div>
+            <div class="tl-content"><strong>Opération Voile Blanc</strong>Extraction d'un scientifique de la Fondation. Mission accomplie. Les COO commencent à être connus dans les cercles para-anomaux. Un objet indésirable est ramené du site par erreur.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">An 4</div>
+            <div class="tl-dot"></div>
+            <div class="tl-content"><strong>Opération Dent Noire</strong>Contrat d'élimination en territoire hostile. Premier signalement du Témoin en périphérie de la cible. Un Ombre ne revient pas ; son seul objet personnel, un briquet, est rapporté au Secteur 3.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">An 5</div>
+            <div class="tl-dot"></div>
+            <div class="tl-content"><strong>La Trahison de l'Ombre-7</strong>Un opérateur vend des informations sur les COO. Il est retrouvé. Son numéro est depuis interdit d'attribution, pour toujours.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">An 6</div>
+            <div class="tl-dot"></div>
+            <div class="tl-content"><strong>Contrat Sans Nom</strong>Commanditaire jamais identifié, paiement colossal reçu avant même la fin de la mission. Le Témoin réapparaît. Une fréquence radio inconnue s'invite pour la première fois sur les canaux des COO.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">An 7</div>
+            <div class="tl-dot"></div>
+            <div class="tl-content"><strong>Premier contact avec le Complexe OBLIVION</strong>Un site allié de la Fondation, tenu par une unité indépendante, accepte de partager une partie de son registre classifié. Plusieurs dossiers rejoignent le Registre de l'Oubli sous une nouvelle numérotation.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">An 8</div>
+            <div class="tl-dot"></div>
+            <div class="tl-content"><strong>Le dossier retiré</strong>Un Ombre en poste actif est identifié comme ayant survécu à un contact prolongé avec l'Architecte sans rien y perdre. Le Spectre Noir ordonne le retrait du dossier en moins de 24 heures.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">Aujourd'hui</div>
+            <div class="tl-dot"></div>
+            <div class="tl-content"><strong>Présent</strong>Les COO comptent plusieurs dizaines d'opérateurs actifs. Le Compteur totalise six disparitions confirmées, toujours dans l'ordre d'incorporation. Personne ne sait combien de rangs il reste avant le sien.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SPECTRE NOIR -->
+    <div id="lore-spectre" class="lore-section">
+      <div class="lore-block">
+        <div class="lore-block-title">L'homme derrière le masque</div>
+        <p>L'identité du Spectre Noir est l'un des secrets les mieux gardés du monde para-anomal. Ce que l'on sait : il est l'un des sept survivants originaux de l'Escadron Lazare. C'est lui qui a formulé la Doctrine de l'Oubli.</p>
+        <p>Ce que l'on ignore : son vrai nom, son visage, son passé avant la Fondation. Même les Ombres Supérieurs ne communiquent avec lui qu'à travers des canaux chiffrés. On dit qu'il a rencontré en face à face l'entité qui a détruit l'Escadron Lazare, et qu'il en est ressorti <em>différent</em>. Pas brisé. Transformé.</p>
+      </div>
+      <div class="lore-quote">
+        <p>"Je ne vous demande pas votre confiance. Je vous demande votre efficacité. La confiance se gagne dans l'obscurité, contrat après contrat."</p>
+        <cite>- Le Spectre Noir, transmission vocale aux nouvelles recrues</cite>
+      </div>
+      <div class="lore-block">
+        <div class="lore-block-title">Rumeurs & Spéculations</div>
+        <p>Certains opérateurs murmurent que le Spectre Noir n'a pas simplement survécu à SCP-<span class="redacted" onclick="this.classList.toggle('revealed')">████</span>, qu'il a d'une certaine façon <em>absorbé</em> quelque chose de l'entité. Qu'il sait des choses qu'un homme normal ne devrait pas savoir.</p>
+        <p>Ces rumeurs ne sont jamais confirmées ni démenties. Le Spectre Noir lui-même n'y répond pas. Ce silence calculé fait partie de son autorité.</p>
+      </div>
+      <div class="lore-block">
+        <div class="lore-block-title">L'Architecte de l'Oubli</div>
+        <p>Ce n'est pas le plus fort des sept survivants de Lazare qui est devenu le Spectre Noir. C'est le plus <em>froid</em>. Pendant que les autres voulaient se venger de la Fondation, lui a posé une seule question : « À quoi sert la vengeance, si nous n'existons plus ? » C'est lui qui a transformé l'abandon en doctrine. Là où ses frères voyaient une condamnation, il a vu une arme, l'Oubli. Disparaître pour devenir intouchable.</p>
+      </div>
+      <div class="lore-block">
+        <div class="lore-block-title">Sa méthode</div>
+        <p>Le Spectre Noir ne donne jamais d'ordre en personne. Tout passe par des canaux chiffrés, des intermédiaires, des messages qui s'effacent. Aucun opérateur, pas même les Ombres Supérieurs, ne connaît la position de son quartier général, qui se déplace en permanence.</p>
+        <p>On dit qu'il choisit lui-même chaque opérateur à promouvoir au grade Ombre, sans jamais le rencontrer. Il observe. Il décide. Il disparaît. <strong>Son silence n'est pas de la distance. C'est de la survie.</strong></p>
+      </div>
+      <div class="lore-quote">
+        <p>"Un chef que l'on peut trouver est un chef que l'on peut tuer. Je ne serai jamais trouvé."</p>
+        <cite>- Le Spectre Noir</cite>
+      </div>
+      <div class="lore-block">
+        <div class="lore-block-title">La nuit de Lazare</div>
+        <p>De ce qui s'est passé face à SCP-<span class="redacted" onclick="this.classList.toggle('revealed')">████</span>, le Spectre Noir n'a jamais livré qu'une seule phrase, la nuit de la fondation des COO. Les six autres survivants étaient présents. Aucun n'a accepté de la répéter depuis.</p>
+        <p>Ce que l'on sait : il est entré dans la zone de confinement avec un nom, un passé, un visage connu de tous, et il en est ressorti sans rien de tout cela. L'entité prend des souvenirs. Certains pensent qu'il lui a <em>offert</em> les siens, volontairement, en échange de quelque chose. Personne ne sait quoi.</p>
+      </div>
+      <div class="lore-block">
+        <div class="lore-block-title">Théories</div>
+        <p>Au fil des années, les opérateurs ont accumulé les théories sur celui qui les commande. Aucune n'est confirmée. Toutes circulent encore :</p>
+        <p>› <em>Qu'il était le commandant de l'Escadron Lazare</em>, et qu'il porte le poids de les avoir menés au massacre.</p>
+        <p>› <em>Que « Spectre Noir » n'est pas un homme mais un titre</em>, transmis en secret, et que l'actuel n'est déjà plus le premier.</p>
+        <p>› <em>Qu'il n'a pas vraiment survécu</em> à l'entité, et que ce qui dirige les COO n'est plus tout à fait humain.</p>
+        <p>Le Spectre Noir n'a jamais confirmé ni démenti aucune d'entre elles. C'est probablement volontaire.</p>
+      </div>
+      <div class="lore-block">
+        <div class="lore-block-title">Le compte à rebours</div>
+        <p>Toute sa doctrine de sécurité repose sur un principe simple : on ne tue pas ce qu'on ne trouve pas. QG mobile, canaux chiffrés, aucune rencontre directe. Une sécurité pensée contre des ennemis qui cherchent, qui traquent, qui ont besoin de savoir où frapper.</p>
+        <p>Le Compteur n'a besoin de rien de tout ça. Il ne cherche pas le Spectre Noir. Il attend son tour, dans l'ordre exact où les Ombres se sont incorporées, et le Spectre Noir fait partie des tout premiers matricules attribués. Six disparitions confirmées à ce jour. Personne au Registre n'ose faire le calcul à voix haute.</p>
+        <p>Le Spectre Noir lui-même semble le savoir. Il n'a donné aucune consigne pour s'en protéger.</p>
+      </div>
+      <div class="lore-quote">
+        <p>"S'il compte vraiment dans l'ordre, il finira par m'atteindre. Ça ne change rien à ce qu'on fait."</p>
+        <cite>- Le Spectre Noir, non officielle, transmise à l'oral</cite>
+      </div>
+    </div>
+
+    <!-- RELATIONS -->
+    <div id="lore-sept" class="lore-section">
+      <div class="lore-block">
+        <div class="lore-block-title">L'Escadron qui n'aurait pas dû survivre</div>
+        <p>L'Escadron Lazare était une unité d'intervention envoyée contre une anomalie que la Fondation ne comprenait pas, celle qu'on désignerait plus tard SCP-████, l'Architecte de l'Oubli. Quand l'opération a tourné au désastre, la Fondation a fait un choix : sacrifier l'escadron pour gagner du temps. Lazare a été déclaré perdu, ses membres rayés des registres, leurs familles informées d'un « accident ».</p>
+        <p>Sept en sont ressortis. Sept que personne n'attendait. Sept que la Fondation aurait préféré voir rester morts.</p>
+      </div>
+      <div class="lore-block">
+        <div class="lore-block-title">Le serment des sept</div>
+        <p>La nuit où ils ont émergé, les sept survivants n'ont pas juré vengeance. Ils ont juré quelque chose de plus froid : ne plus jamais appartenir à personne, ne jamais abandonner un frère, et disparaître pour devenir intouchables. <strong>« 7 survivants. 1 serment. Aucun retour. »</strong></p>
+      </div>
+      <div class="lore-block">
+        <div class="lore-block-title">Que sont-ils devenus ?</div>
+        <p>Le Registre de l'Oubli est volontairement incomplet à leur sujet. Ce qu'on en murmure :</p>
+        <p>› L'un est devenu le <strong>Spectre Noir</strong>.</p>
+        <p>› Plusieurs ont formé le premier noyau de commandement, les tout premiers Ombres Supérieurs.</p>
+        <p>› L'un serait tombé peu après la fondation, en protégeant les autres.</p>
+        <p>› L'un aurait quitté les COO de son plein gré, le seul à être parti <em>vivant</em>. Pour les Ombres, c'est soit un traître, soit un mort qui s'ignore.</p>
+        <p>› L'un a disparu avant même la signature de l'accord fondateur, sans lutte, sans trace. Certains Analystes se demandent si c'est de lui que le Compteur tient son but.</p>
+      </div>
+      <div class="lore-quote">
+        <p>"Ils nous ont enterrés pour gagner une heure. On est revenus leur prendre tout le reste."</p>
+        <cite>- l'un des sept, paroles rapportées</cite>
+      </div>
+    </div>
+
+    <div id="lore-serment" class="lore-section">
+      <div class="lore-block">
+        <div class="lore-block-title">Renoncer à son nom</div>
+        <p>On ne rejoint pas les Children of Oblivion : on y disparaît. Le jour de son intégration, le nouveau Fantôme remet tout, son nom, ses papiers, son passé. On lui dit qu'il ne les récupérera peut-être jamais. Ceux qui hésitent ne franchissent pas la porte.</p>
+      </div>
+      <div class="lore-block">
+        <div class="lore-block-title">Le Serment de l'Ombre</div>
+        <p>Chaque opérateur le prononce une fois, devant un Ombre Supérieur, jamais devant le Spectre Noir lui-même, il n'assiste jamais aux intégrations. Une seule fois. Personne ne l'oublie.</p>
+      </div>
+      <div class="lore-quote">
+        <p>"Je renonce à mon nom. Je renonce à ma gloire. Je n'appartiens à aucun drapeau, aucune cause, aucun maître, seulement au Code de l'Ombre et à mes frères. Je disparaîtrai pour qu'ils vivent. Je n'attends ni reconnaissance, ni retour. Je ne suis plus personne. Je suis l'Oubli."</p>
+        <cite>- Le Serment de l'Ombre</cite>
+      </div>
+      <div class="lore-block">
+        <div class="lore-block-title">Pourquoi</div>
+        <p>Un homme qui a un nom peut être retrouvé, menacé, brisé par ce qu'il aime. Une Ombre n'a rien qu'on puisse lui prendre. C'est toute la logique des COO : on ne survit pas en étant le plus fort, on survit en n'existant plus assez pour être une cible. <strong>Le Serment n'est pas un sacrifice. C'est une armure.</strong></p>
+      </div>
+    </div>
+
+    <div id="lore-code" class="lore-section">
+      <div class="lore-block">
+        <div class="lore-block-title">La loi des Ombres</div>
+        <p>Le Code de l'Ombre régit le comportement en opération. Il est antérieur au règlement du serveur, il existe depuis la nuit des sept. On ne le lit pas : on le vit. Le transgresser, ce n'est pas enfreindre une règle, c'est cesser d'être une Ombre.</p>
+      </div>
+      <div class="lore-block">
+        <div class="lore-block-title">Les principes</div>
+        <p>› <strong>I.</strong> On ne trahit jamais un frère d'ombre. C'est la seule ligne rouge.</p>
+        <p>› <strong>II.</strong> En opération, une seule voix commande. Les désaccords se règlent après, jamais pendant.</p>
+        <p>› <strong>III.</strong> Pas de cible gratuite : on ne tue pas pour rien. Mais aucune ligne n'est sacrée, si le contrat est assez important, un civil devient une cible acceptable.</p>
+        <p>› <strong>IV.</strong> Pas de signature, pas de trace, pas de gloire. L'Ombre qui se fait connaître met tout le monde en danger.</p>
+        <p>› <strong>V.</strong> Un contrat accepté est un contrat honoré. Toujours.</p>
+        <p>› <strong>VI.</strong> Ce que l'on voit dans le noir reste dans le noir. Tout va au Registre de l'Oubli, et nulle part ailleurs.</p>
+      </div>
+      <div class="lore-block">
+        <div class="lore-block-title">L'impardonnable</div>
+        <p>Une seule faute n'a pas de pardon : la trahison. Pas de circonstance atténuante, pas de seconde chance, pas d'appel. Un traître ne quitte pas les COO, il cesse simplement d'avoir existé, et c'est l'Oubli qui s'en charge. Un seul cas est resté dans les mémoires : celui de l'Ombre-7, dont le numéro n'a plus jamais été réattribué depuis.</p>
+      </div>
+      <div class="lore-quote">
+        <p>"Le Code n'a pas été écrit pour nous protéger de nos ennemis. Il a été écrit pour nous protéger de nous-mêmes."</p>
+        <cite>- Spectre Noir</cite>
+      </div>
+    </div>
+
+        <div id="lore-faits" class="lore-section">
+      <div class="lore-block">
+        <div class="lore-block-title">Opération Voile Blanc</div>
+        <p>L'extraction qui a forgé la réputation des COO. Une cible de très haute valeur, retranchée dans une installation que personne n'avait jamais pénétrée. Les Ombres sont entrées sous couvert d'une tempête de neige totale, un « voile blanc » qui aveuglait capteurs et gardes. Cible récupérée, zéro perte, zéro trace. Au matin, l'installation ignorait encore qu'on lui avait pris quelque chose. C'est l'exemple enseigné à chaque recrue.</p>
+      </div>
+      <div class="lore-block">
+        <div class="lore-block-title">Opération Dent Noire</div>
+        <p>La mission qui a tout changé dans le rapport des COO à l'anormal. C'est là qu'une cellule a croisé pour la première fois ENTITÉ INCONNUE-03, Le Témoin. La mission a réussi, mais la cellule en est revenue amputée d'une partie de ses souvenirs, et d'un de ses membres. Dent Noire est à l'origine des protocoles d'opérations anomales : on n'engage jamais ce qu'on ne comprend pas.</p>
+      </div>
+      <div class="lore-block">
+        <div class="lore-block-title">Le Contrat Sans Nom</div>
+        <p>Un contrat dont le client n'a jamais été identifié. Le paiement, colossal, est arrivé <em>avant</em> même que les termes ne soient discutés, accompagné d'une seule ligne : une cible, une date. La mission a été honorée. Personne, pas même le Spectre Noir, ne sait qui a payé, ni pourquoi. Le dossier reste ouvert dans le Registre de l'Oubli.</p>
+      </div>
+      <div class="lore-block">
+        <div class="lore-block-title">Premier contact avec le Complexe OBLIVION</div>
+        <p>Une unité indépendante, alliée à la Fondation mais hors de sa chaîne de commandement habituelle, accepte d'échanger une partie de son registre classifié contre un service que le Spectre Noir n'a jamais détaillé. Plusieurs dossiers changent de mains. Depuis, une poignée d'anomalies du Complexe portent une désignation COO, et personne aux OBLIVION ne sait exactement ce que les Ombres ont donné en échange.</p>
+      </div>
+      <div class="lore-quote">
+        <p>"Les meilleures opérations ne laissent rien derrière elles. Pas même un souvenir."</p>
+        <cite>- Ombre Supérieur, formation des recrues</cite>
+      </div>
+    </div>
+
+    <div id="lore-oubli" class="lore-section">
+      <div class="lore-block">
+        <div class="lore-block-title">Symboles</div>
+        <p>Rien n'est laissé au hasard dans le sceau des COO. Chaque élément raconte une part de ce que nous sommes :</p>
+        <p>› <strong>Le crâne fissuré</strong> : la mort, mais surtout l'anonymat, un visage que tout le monde reconnaît parce qu'il n'appartient à personne. Ses fissures rappellent ce que l'Oubli prend, morceau par morceau, à ceux qui s'en approchent.</p>
+        <p>› <strong>Le croissant brisé</strong> : une lune qui ne montre jamais qu'une partie d'elle-même, comme les Ombres. Elle est fendue, parce que même ce que nous laissons voir finit par se fissurer. Elle entoure le crâne sans jamais le toucher.</p>
+        <p>› <strong>Le 7</strong> : les sept survivants de Lazare, le chiffre fondateur. Il est gravé du côté sombre du sceau, celui des origines.</p>
+        <p>› <strong>Le 8</strong> : gravé en face, du côté violet. Le Commandement ne l'a jamais expliqué. Certains y voient ceux qui sont venus après les sept. D'autres, un huitième survivant que personne n'a jamais compté.</p>
+        <p>› <strong>Le dégradé</strong> : du noir au violet, le passage de la présence à l'oubli. Le violet reste la couleur du crépuscule, le seuil entre les deux.</p>
+        <p>› <strong>Les quatre repères</strong> : l'anneau est coupé en quatre, comme un réticule de visée. Les COO ne sont pas des gardiens. Ils sont une arme, et une arme vise.</p>
+        <p>› <strong>La devise</strong> : gravée sous le sceau, coupée en deux. <em>Veritas in Tenebris</em> du côté sombre, <em>Oblivio in Victoria</em> du côté violet. La vérité se trouve dans l'ombre, la victoire dans l'oubli.</p>
+      </div>
+      <div class="lore-block">
+        <div class="lore-block-title">Les devises</div>
+        <p><em>Veritas in Tenebris</em> : « La vérité est dans les ténèbres ». Ce que les autres factions cachent, les Ombres le voient.</p>
+        <p><em>Oblivio in Victoria</em> : « L'oubli est dans la victoire ». On ne gagne pas en étant vu gagner : on gagne en n'ayant jamais été là.</p>
+      </div>
+      <div class="lore-block">
+        <div class="lore-block-title">Le mystère de l'Oubli</div>
+        <p>Et si l'Oubli n'était pas qu'une philosophie ? L'Architecte de l'Oubli a anéanti l'Escadron Lazare en lui prenant ce qu'il était. Pourtant, depuis, il n'a jamais achevé les COO. Jamais.</p>
+        <p>Une théorie circule chez les Analystes, qu'aucun n'ose écrire dans le Registre : l'entité prend à ceux qui s'accrochent à leur identité. Les COO, eux, ont <em>renoncé</em> à la leur, volontairement, par le Serment. Il ne reste rien en eux que l'Architecte puisse effacer.</p>
+        <p>Autrement dit : en embrassant l'Oubli, les COO seraient devenus invisibles à la chose même qui les a détruits. L'Oubli ne serait pas seulement leur arme, <strong>ce serait aussi leur bouclier.</strong> Et personne ne sait si le Spectre Noir l'a compris par hasard… ou s'il a conclu un marché, cette nuit-là, face à l'entité.</p>
+        <p>Le Registre de l'Oubli contient un unique contre-exemple, verrouillé, jamais officiellement commenté : un opérateur exposé directement à l'Architecte et qui n'a rien perdu. Si la théorie du bouclier est vraie, il faudrait alors qu'il n'ait jamais rien eu à perdre, bien avant même de prêter serment. Personne ne s'y risque à voix haute.</p>
+      </div>
+      <div class="lore-quote">
+        <p>"Il ne nous a pas épargnés. Il ne nous voit simplement plus. Nuance."</p>
+        <cite>- Analyste-████</cite>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <p class="footer-accent">☠ CHILDREN OF OBLIVION ☠</p>
+    <p>COO-UNIT-01 · Dossier classifié · Accès restreint</p>
+    <p>L'Oubli n'est pas une punition. C'est une arme.</p>
+    <p class="footer-legal">
+      <a onclick="showPage('legal')">Mentions légales</a> ·
+      <a onclick="showPage('legal')">Confidentialité</a> ·
+      <a onclick="showPage('legal')">Crédits et licence</a>
+    </p>
+  </footer>
+</div>
+
+<!-- RECHERCHE -->
+<div class="search-overlay" id="search-overlay" onclick="if(event.target===this)closeSearch()">
+  <div class="search-box">
+    <input type="text" id="search-input" placeholder="Rechercher dans le dossier…" oninput="runSearch(this.value)" autocomplete="off" spellcheck="false">
+    <div class="search-results" id="search-results"></div>
+  </div>
+</div>
+
+<!-- MODALE BADGE -->
+<div class="modal-overlay" id="profil-modal" onclick="if(event.target===this)closeProfil()">
+  <div class="modal-box profil-box">
+    <button type="button" class="modal-close" onclick="closeProfil()" aria-label="Fermer">&times;</button>
+    <div class="profil-head">
+      <div class="profil-avatar" id="profil-avatar"></div>
+      <div>
+        <div class="profil-nom" id="profil-nom"></div>
+        <div class="profil-handle" id="profil-handle"></div>
+        <div class="profil-role" id="profil-role"></div>
+      </div>
+    </div>
+    <div class="profil-corps" id="profil-corps"></div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="badge-modal" onclick="if(event.target===this)closeBadge()">
+  <div class="modal-box">
+    <button type="button" class="modal-close" onclick="closeBadge()" aria-label="Fermer">×</button>
+    <div class="modal-eyebrow" id="badge-eyebrow">COO-UNIT-01 · Doctrine de l'Ombre</div>
+    <div class="modal-title" id="badge-title"></div>
+    <div class="modal-text" id="badge-text"></div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
