@@ -1,0 +1,18 @@
+/* Dossiers des Ombres Supérieurs et du Conseiller (page Effectifs) */
+.ombre-card[onclick], .cmd-spectre[onclick] { cursor: pointer; }
+.cmd-spectre[onclick]:hover { border-color: var(--accent2); }
+.cs-more { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent2); margin-top: 0.7rem; }
+.ombre-more { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent2); margin-top: 0.9rem; opacity: 0.8; }
+.profil-box.dossier-box { max-width: 780px; }
+.dos-par { font-size: 0.95rem; line-height: 1.8; color: var(--text); margin: 0 0 0.9rem; }
+.dos-quote { border-left: 2px solid var(--accent); padding: 0.4rem 0 0.4rem 1rem; margin: 1rem 0; font-style: italic; color: var(--text); line-height: 1.7; }
+.dos-quote span { display: block; font-style: normal; font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.08em; color: var(--text-dim); margin-top: 0.4rem; }
+.dos-table { width: 100%; border-collapse: collapse; margin: 0.6rem 0 1rem; font-size: 0.85rem; }
+.dos-table th { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent2); text-align: left; padding: 0.5rem 0.6rem; border-bottom: 1px solid var(--accent); }
+.dos-table td { padding: 0.5rem 0.6rem; border-bottom: 1px solid var(--border); color: var(--text); vertical-align: top; line-height: 1.5; }
+.dos-table td:first-child { color: var(--text-dim); font-family: var(--mono); font-size: 0.7rem; }
+.dos-bar { height: 5px; background: rgba(255,255,255,0.07); border-radius: 3px; min-width: 90px; }
+.dos-bar i { display: block; height: 100%; border-radius: 3px; background: linear-gradient(90deg, var(--accent), var(--accent2)); }
+.dos-stamp { margin-bottom: 1rem; }
+.profil-liste li strong { color: var(--accent2); font-weight: 600; }
+@media (max-width: 520px) { .dos-table { font-size: 0.78rem; } .dos-table th, .dos-table td { padding: 0.4rem 0.35rem; } }
