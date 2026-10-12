@@ -7,6 +7,7 @@
 <link rel="icon" type="image/png" href="favicon.png">
 <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@300;400;500;600;700&family=Crimson+Pro:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="dossiers.css">
 </head>
 <body data-page="effectifs">
 
@@ -94,53 +95,104 @@
         </div>
         <div class="cs-status st-actif">● ACTIF</div>
       </div>
-      <div class="ombre-card">
+      <div class="ombre-card" onclick="openDossier('requiem')" onkeydown="if(event.key==='Enter')openDossier('requiem')" role="button" tabindex="0">
         <div class="ombre-skull">☠</div>
         <div class="ombre-code">REQUIEM</div>
         <div class="ombre-grade">Ombre Supérieur</div>
         <div class="ombre-line"><span class="k">Spécialisation</span><span class="v">Exécuteur</span></div>
         <div class="ombre-line"><span class="k">Statut</span><span class="v st-actif">Actif</span></div>
         <div class="ombre-desc">Le bras droit du Spectre Noir. Là où il passe, le silence suit.</div>
+        <div class="ombre-more">Voir le dossier ›</div>
       </div>
-      <div class="ombre-card">
+      <div class="ombre-card" onclick="openDossier('arknights')" onkeydown="if(event.key==='Enter')openDossier('arknights')" role="button" tabindex="0">
         <div class="ombre-skull">☠</div>
-        <div class="ombre-code">MOON</div>
+        <div class="ombre-code">ARKNIGHTS</div>
         <div class="ombre-grade">Ombre Supérieur</div>
         <div class="ombre-line"><span class="k">Spécialisation</span><span class="v">Médecin de Guerre</span></div>
-        <div class="ombre-line"><span class="k">Statut</span><span class="v st-dispa">Disparu</span></div>
-        <div class="ombre-desc">Coordonnait les opérations. Disparue sans trace, sans signe de lutte. Son matricule reste attribué : personne au Commandement n'a voulu le libérer.</div>
+        <div class="ombre-line"><span class="k">Statut</span><span class="v st-actif">Actif</span></div>
+        <div class="ombre-desc">Ancien chef de l'unité médicale de terrain de la Delta Force. Il a délaissé son identité pour devenir une Ombre.</div>
+        <div class="ombre-more">Voir le dossier ›</div>
       </div>
-      <div class="ombre-card">
+      <div class="ombre-card" onclick="openDossier('warden')" onkeydown="if(event.key==='Enter')openDossier('warden')" role="button" tabindex="0">
         <div class="ombre-skull">☠</div>
         <div class="ombre-code">WARDEN</div>
         <div class="ombre-grade">Ombre Supérieur</div>
         <div class="ombre-line"><span class="k">Spécialisation</span><span class="v">Bouclier</span></div>
         <div class="ombre-line"><span class="k">Statut</span><span class="v st-actif">Actif</span></div>
         <div class="ombre-desc">Gardien du Code de l'Ombre. Rien ni personne ne lui échappe.</div>
+        <div class="ombre-more">Voir le dossier ›</div>
       </div>
-      <div class="ombre-card">
+      <div class="ombre-card" onclick="openDossier('vesper')" onkeydown="if(event.key==='Enter')openDossier('vesper')" role="button" tabindex="0">
         <div class="ombre-skull">☠</div>
         <div class="ombre-code">VESPER</div>
         <div class="ombre-grade">Ombre Supérieur</div>
         <div class="ombre-line"><span class="k">Spécialisation</span><span class="v">Technicien</span></div>
         <div class="ombre-line"><span class="k">Statut</span><span class="v st-actif">Actif</span></div>
         <div class="ombre-desc">La dernière voix qu'on entend avant une opération. Calme, méthodique, implacable.</div>
+        <div class="ombre-more">Voir le dossier ›</div>
       </div>
-      <div class="ombre-card">
+      <div class="ombre-card" onclick="openDossier('wraith')" onkeydown="if(event.key==='Enter')openDossier('wraith')" role="button" tabindex="0">
         <div class="ombre-skull">☠</div>
         <div class="ombre-code">WRAITH</div>
         <div class="ombre-grade">Ombre Supérieur</div>
         <div class="ombre-line"><span class="k">Spécialisation</span><span class="v">Éclaireur</span></div>
         <div class="ombre-line"><span class="k">Statut</span><span class="v st-actif">Actif</span></div>
         <div class="ombre-desc">Personne ne sait quand WRAITH est dans la pièce. C'est tout l'intérêt.</div>
+        <div class="ombre-more">Voir le dossier ›</div>
       </div>
-      <div class="ombre-card">
+      <div class="ombre-card" onclick="openDossier('nox')" onkeydown="if(event.key==='Enter')openDossier('nox')" role="button" tabindex="0">
         <div class="ombre-skull">☠</div>
         <div class="ombre-code">NOX</div>
         <div class="ombre-grade">Ombre Supérieur</div>
         <div class="ombre-line"><span class="k">Spécialisation</span><span class="v">Analyste SCP</span></div>
         <div class="ombre-line"><span class="k">Statut</span><span class="v st-actif">Actif</span></div>
         <div class="ombre-desc">Opère là où la lumière ne va pas. Les contrats les plus sombres lui reviennent.</div>
+        <div class="ombre-more">Voir le dossier ›</div>
+      </div>
+    </div>
+
+    <div class="section-title">Conseillers et Cabinets</div>
+    <p class="roster-sub">Structure d'appui du Commandement</p>
+    <div class="ombres-note">Autour du Spectre Noir et de chaque Ombre Supérieur, une structure d'appui relaie les ordres, prépare les décisions et assure le suivi des cellules.</div>
+    <div class="ombres-grid">
+      <div class="cmd-spectre" id="conseiller-spectre" onclick="openDossier('conseiller')" onkeydown="if(event.key==='Enter')openDossier('conseiller')" role="button" tabindex="0">
+        <div class="cs-skull">☠</div>
+        <div class="cs-info">
+          <div class="cs-code">Le Conseiller</div>
+          <div class="cs-grade">Conseiller Principal du Spectre Noir · Rang 0</div>
+          <div class="cs-desc">Le Spectre Noir, plus haut gradé de l'organisation, dispose d'un Conseiller. Il transmet et fait appliquer ses ordres, assure la continuité du commandement en son absence, et exerce une autorité sur les Ombres Supérieurs et les cellules, dans le cadre des directives du Spectre Noir.</div>
+          <div class="cs-more">Ouvrir son dossier ›</div>
+        </div>
+      </div>
+      <div class="ombre-card">
+        <div class="ombre-skull">☠</div>
+        <div class="ombre-code">CONSEILLERS</div>
+        <div class="ombre-grade">Conseillers des Ombres Supérieurs</div>
+        <div class="ombre-line"><span class="k">Attribution</span><span class="v">Un Conseiller par Ombre Supérieur</span></div>
+        <div class="ombre-line"><span class="k">Autorité</span><span class="v">Sur la cellule de son Ombre Supérieur</span></div>
+        <div class="ombre-desc">Chaque Conseiller a autorité sur la cellule de son Ombre Supérieur : Wither, Ombres et Fantômes. Il transmet les ordres, veille à leur application et sert de relais entre l'Ombre Supérieur et les membres de la cellule.</div>
+      </div>
+      <div class="ombre-card">
+        <div class="ombre-skull">☠</div>
+        <div class="ombre-code">CABINET</div>
+        <div class="ombre-grade">Cabinets des Ombres Supérieurs</div>
+        <div class="ombre-line"><span class="k">Attribution</span><span class="v">Un Cabinet par Ombre Supérieur</span></div>
+        <div class="ombre-desc">Le Cabinet aide l'Ombre Supérieur à gérer sa catégorie et à décider. Il prépare certaines directives, organise des réunions, assure le suivi de la catégorie et peut inviter les personnes nécessaires aux réunions.</div>
+      </div>
+      <div class="ombre-card">
+        <div class="ombre-skull">☠</div>
+        <div class="ombre-code">CABINET DU SPECTRE</div>
+        <div class="ombre-grade">Cabinet du Spectre Noir</div>
+        <div class="ombre-line"><span class="k">Rattachement</span><span class="v">Spectre Noir</span></div>
+        <div class="ombre-desc">Dédié à l'assistance du Spectre Noir dans la gestion globale des Children of Oblivion. Il aide à préparer les décisions et les ordres destinés aux Ombres Supérieurs, organise des réunions avec eux et assure le suivi des cellules.</div>
+      </div>
+      <div class="ombre-card">
+        <div class="ombre-skull">☠</div>
+        <div class="ombre-code">CONSEIL DES OMBRES</div>
+        <div class="ombre-grade">Instance de coordination</div>
+        <div class="ombre-line"><span class="k">Nom</span><span class="v">Provisoire</span></div>
+        <div class="ombre-line"><span class="k">Composition</span><span class="v">Spectre Noir, Ombres Supérieurs, un membre de confiance par Cabinet</span></div>
+        <div class="ombre-desc">Réunit les plus hauts gradés pour discuter des décisions importantes et coordonner les différentes parties de l'organisation. Les membres des Cabinets présents peuvent transmettre les informations importantes issues des réunions. « Conseil des Ombres » est un nom provisoire.</div>
       </div>
     </div>
 
@@ -266,5 +318,6 @@
 </div>
 
 <script src="script.js"></script>
+<script src="dossiers.js"></script>
 </body>
 </html>
