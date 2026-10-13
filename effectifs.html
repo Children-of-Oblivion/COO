@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Effectifs - Children of Oblivion - COO-UNIT-01</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@300;400;500;600;700&family=Crimson+Pro:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="dossiers.css">
+</head>
+<body data-page="effectifs">
+
+
+<div class="scanlines"></div>
+
+<div class="hud-frame">
+  <span class="hud-corner tl"></span>
+  <span class="hud-corner tr"></span>
+  <span class="hud-corner bl"></span>
+  <span class="hud-corner br"></span>
+</div>
+<div class="hud-tag bl-tag"><span class="hud-dot"></span><span id="hud-clock">--:--:--</span></div>
+<div class="hud-tag br-tag"><span id="hud-opid">OMBRE-????</span></div>
+
+<div class="boot-screen" id="boot" onclick="skipBoot()">
+  <div class="boot-inner">
+    <div class="boot-line" id="boot-text"></div>
+    <div class="boot-progress"><div class="boot-progress-bar" id="boot-bar"></div></div>
+    <div class="boot-id" id="boot-id"></div>
+    <div class="boot-skip">cliquer pour passer</div>
+  </div>
+</div>
+
+<script>try{if(sessionStorage.getItem('coo_booted')){var _b=document.getElementById('boot');if(_b)_b.parentNode.removeChild(_b);}}catch(e){}</script>
+
+<div class="session-lock" id="session-lock">
+  <div class="session-lock-inner">
+    <div class="session-lock-title">Session expirée</div>
+    <div class="session-lock-text">Accès révoqué par le système après cinq minutes de connexion.<br>Toute activité restante sur ce terminal a été journalisée.</div>
+    <button class="session-lock-btn" onclick="reconnectSession()">Se reconnecter</button>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo" onclick="showPage('accueil')" onkeydown="if(event.key==='Enter')showPage('accueil')" role="link" tabindex="0" title="Retour à l'accueil">
+      <span class="logo-img" onclick="skullClick()" role="img" aria-label="Children of Oblivion"></span>
+      <span class="glitch">COO-UNIT-01</span>
+    </div>
+    <ul class="nav-links">
+      <li><button data-page="accueil" onclick="showPage('accueil')">Accueil</button></li>
+      <li><button data-page="presentation" onclick="showPage('presentation')">Présentation</button></li>
+      <li><button data-page="lore" onclick="showPage('lore')">Lore</button></li>
+      <li><button data-page="relations" onclick="showPage('relations')">Relations</button></li>
+      <li><button data-page="archives" onclick="showPage('archives')">Archives</button></li>
+      <li><button data-page="registre" onclick="showPage('registre')">Registre</button></li>
+      <li><button class="active" data-page="effectifs" onclick="showPage('effectifs')">Effectifs</button></li>
+      <li><button data-page="recrutement" onclick="showPage('recrutement')">Recrutement</button></li>
+      <li><button data-page="acces" onclick="showPage('acces')" class="nav-restreint">Accès restreint</button></li>
+    </ul>
+    <div class="nav-right">
+      <button class="nav-search" onclick="openSearch()" aria-label="Rechercher" title="Rechercher (Ctrl+K)"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><line x1="16.5" y1="16.5" x2="21" y2="21"></line></svg></button>
+      <div class="session-timer" id="session-timer" title="Temps de session restant">05:00</div>
+      <button class="nav-burger" onclick="toggleNav()" aria-label="Menu">☰</button>
+      <a class="nav-discord" href="https://discord.gg/EjdVtPbWyr" target="_blank" rel="noopener">Discord</a>
+      <div class="nav-status">
+        <div class="status-dot"></div>
+        ACTIF
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div id="page-effectifs" class="page active">
+  <div class="page-header">
+    <div class="page-header-inner">
+      <div class="page-eyebrow">☠ COO-UNIT-01 · Effectifs</div>
+      <h2 class="page-title">Le Mur des Ombres</h2>
+      <p class="page-desc">Ceux qui ont abandonné leur nom pour en porter un autre. Les opérateurs des COO.</p>
+    </div>
+  </div>
+  <div class="content-wrap">
+    <div class="ombres-note">L'ensemble des effectifs des Children of Oblivion, du Commandement aux Fantômes. Cliquez sur un opérateur pour sa fiche (grade, spécialisation, statut).</div>
+
+    <div class="section-title">Le Commandement</div>
+    <div class="ombres-grid">
+      <div class="cmd-spectre">
+        <div class="cs-skull">☠</div>
+        <div class="cs-info">
+          <div class="cs-code">Spectre Noir</div>
+          <div class="cs-grade">Commandant · Autorité absolue</div>
+          <div class="cs-desc">Identité classifiée. Personne ne l'a jamais vu, tout le monde lui obéit. Dernier mot sur chaque contrat, chaque promotion, chaque décision stratégique.</div>
+        </div>
+        <div class="cs-status st-actif">● ACTIF</div>
+      </div>
+      <div class="ombre-card" onclick="openDossier('requiem')" onkeydown="if(event.key==='Enter')openDossier('requiem')" role="button" tabindex="0">
+        <div class="ombre-skull">☠</div>
+        <div class="ombre-code">REQUIEM</div>
+        <div class="ombre-grade">Ombre Supérieur</div>
+        <div class="ombre-line"><span class="k">Spécialisation</span><span class="v">Exécuteur</span></div>
+        <div class="ombre-line"><span class="k">Statut</span><span class="v st-actif">Actif</span></div>
+        <div class="ombre-desc">Le bras droit du Spectre Noir. Là où il passe, le silence suit.</div>
+        <div class="ombre-more">Voir le dossier ›</div>
+      </div>
+      <div class="ombre-card" onclick="openDossier('arknights')" onkeydown="if(event.key==='Enter')openDossier('arknights')" role="button" tabindex="0">
+        <div class="ombre-skull">☠</div>
+        <div class="ombre-code">ARKNIGHTS</div>
+        <div class="ombre-grade">Ombre Supérieur</div>
+        <div class="ombre-line"><span class="k">Spécialisation</span><span class="v">Médecin de Guerre</span></div>
+        <div class="ombre-line"><span class="k">Statut</span><span class="v st-actif">Actif</span></div>
+        <div class="ombre-desc">Ancien chef de l'unité médicale de terrain de la Delta Force. Il a délaissé son identité pour devenir une Ombre.</div>
+        <div class="ombre-more">Voir le dossier ›</div>
+      </div>
+      <div class="ombre-card" onclick="openDossier('warden')" onkeydown="if(event.key==='Enter')openDossier('warden')" role="button" tabindex="0">
+        <div class="ombre-skull">☠</div>
+        <div class="ombre-code">WARDEN</div>
+        <div class="ombre-grade">Ombre Supérieur</div>
+        <div class="ombre-line"><span class="k">Spécialisation</span><span class="v">Bouclier</span></div>
+        <div class="ombre-line"><span class="k">Statut</span><span class="v st-actif">Actif</span></div>
+        <div class="ombre-desc">Gardien du Code de l'Ombre. Rien ni personne ne lui échappe.</div>
+        <div class="ombre-more">Voir le dossier ›</div>
+      </div>
+      <div class="ombre-card" onclick="openDossier('vesper')" onkeydown="if(event.key==='Enter')openDossier('vesper')" role="button" tabindex="0">
+        <div class="ombre-skull">☠</div>
+        <div class="ombre-code">VESPER</div>
+        <div class="ombre-grade">Ombre Supérieur</div>
+        <div class="ombre-line"><span class="k">Spécialisation</span><span class="v">Technicien</span></div>
+        <div class="ombre-line"><span class="k">Statut</span><span class="v st-actif">Actif</span></div>
+        <div class="ombre-desc">La dernière voix qu'on entend avant une opération. Calme, méthodique, implacable.</div>
+        <div class="ombre-more">Voir le dossier ›</div>
+      </div>
+      <div class="ombre-card" onclick="openDossier('wraith')" onkeydown="if(event.key==='Enter')openDossier('wraith')" role="button" tabindex="0">
+        <div class="ombre-skull">☠</div>
+        <div class="ombre-code">WRAITH</div>
+        <div class="ombre-grade">Ombre Supérieur</div>
+        <div class="ombre-line"><span class="k">Spécialisation</span><span class="v">Éclaireur</span></div>
+        <div class="ombre-line"><span class="k">Statut</span><span class="v st-actif">Actif</span></div>
+        <div class="ombre-desc">Personne ne sait quand WRAITH est dans la pièce. C'est tout l'intérêt.</div>
+        <div class="ombre-more">Voir le dossier ›</div>
+      </div>
+      <div class="ombre-card" onclick="openDossier('nox')" onkeydown="if(event.key==='Enter')openDossier('nox')" role="button" tabindex="0">
+        <div class="ombre-skull">☠</div>
+        <div class="ombre-code">NOX</div>
+        <div class="ombre-grade">Ombre Supérieur</div>
+        <div class="ombre-line"><span class="k">Spécialisation</span><span class="v">Analyste SCP</span></div>
+        <div class="ombre-line"><span class="k">Statut</span><span class="v st-actif">Actif</span></div>
+        <div class="ombre-desc">Opère là où la lumière ne va pas. Les contrats les plus sombres lui reviennent.</div>
+        <div class="ombre-more">Voir le dossier ›</div>
+      </div>
+    </div>
+
+    <div class="section-title">Conseillers et Cabinets</div>
+    <p class="roster-sub">Structure d'appui du Commandement</p>
+    <div class="ombres-note">Autour du Spectre Noir et de chaque Ombre Supérieur, une structure d'appui relaie les ordres, prépare les décisions et assure le suivi des cellules.</div>
+    <div class="ombres-grid">
+      <div class="cmd-spectre" id="conseiller-spectre" onclick="openDossier('conseiller')" onkeydown="if(event.key==='Enter')openDossier('conseiller')" role="button" tabindex="0">
+        <div class="cs-skull">☠</div>
+        <div class="cs-info">
+          <div class="cs-code">Le Conseiller</div>
+          <div class="cs-grade">Conseiller Principal du Spectre Noir · Rang 0</div>
+          <div class="cs-desc">Le Spectre Noir, plus haut gradé de l'organisation, dispose d'un Conseiller. Il transmet et fait appliquer ses ordres, assure la continuité du commandement en son absence, et exerce une autorité sur les Ombres Supérieurs et les cellules, dans le cadre des directives du Spectre Noir.</div>
+          <div class="cs-more">Ouvrir son dossier ›</div>
+        </div>
+      </div>
+      <div class="ombre-card">
+        <div class="ombre-skull">☠</div>
+        <div class="ombre-code">CONSEILLERS</div>
+        <div class="ombre-grade">Conseillers des Ombres Supérieurs</div>
+        <div class="ombre-line"><span class="k">Attribution</span><span class="v">Un Conseiller par Ombre Supérieur</span></div>
+        <div class="ombre-line"><span class="k">Autorité</span><span class="v">Sur la cellule de son Ombre Supérieur</span></div>
+        <div class="ombre-desc">Chaque Conseiller a autorité sur la cellule de son Ombre Supérieur : Wither, Ombres et Fantômes. Il transmet les ordres, veille à leur application et sert de relais entre l'Ombre Supérieur et les membres de la cellule.</div>
+      </div>
+      <div class="ombre-card">
+        <div class="ombre-skull">☠</div>
+        <div class="ombre-code">CABINET</div>
+        <div class="ombre-grade">Cabinets des Ombres Supérieurs</div>
+        <div class="ombre-line"><span class="k">Attribution</span><span class="v">Un Cabinet par Ombre Supérieur</span></div>
+        <div class="ombre-desc">Le Cabinet aide l'Ombre Supérieur à gérer sa catégorie et à décider. Il prépare certaines directives, organise des réunions, assure le suivi de la catégorie et peut inviter les personnes nécessaires aux réunions.</div>
+      </div>
+      <div class="ombre-card">
+        <div class="ombre-skull">☠</div>
+        <div class="ombre-code">CABINET DU SPECTRE</div>
+        <div class="ombre-grade">Cabinet du Spectre Noir</div>
+        <div class="ombre-line"><span class="k">Rattachement</span><span class="v">Spectre Noir</span></div>
+        <div class="ombre-desc">Dédié à l'assistance du Spectre Noir dans la gestion globale des Children of Oblivion. Il aide à préparer les décisions et les ordres destinés aux Ombres Supérieurs, organise des réunions avec eux et assure le suivi des cellules.</div>
+      </div>
+      <div class="ombre-card">
+        <div class="ombre-skull">☠</div>
+        <div class="ombre-code">CONSEIL DES OMBRES</div>
+        <div class="ombre-grade">Instance de coordination</div>
+        <div class="ombre-line"><span class="k">Nom</span><span class="v">Provisoire</span></div>
+        <div class="ombre-line"><span class="k">Composition</span><span class="v">Spectre Noir, Ombres Supérieurs, un membre de confiance par Cabinet</span></div>
+        <div class="ombre-desc">Réunit les plus hauts gradés pour discuter des décisions importantes et coordonner les différentes parties de l'organisation. Les membres des Cabinets présents peuvent transmettre les informations importantes issues des réunions. « Conseil des Ombres » est un nom provisoire.</div>
+      </div>
+    </div>
+
+    <div class="section-title">Wither</div>
+    <p class="roster-sub">Chefs de section · Matricules Wither-1 à Wither-10</p>
+    <div class="matricule-grid">
+      <div class="matricule" onclick="openMatricule('Wither-1')"><span class="mdot"></span><div class="minfo"><span class="mcode">Wither-1</span><span class="mspec">Médecin de guerre</span></div></div>
+      <div class="matricule" onclick="openMatricule('Wither-2')"><span class="mdot"></span><div class="minfo"><span class="mcode">Wither-2</span><span class="mspec">Éclaireur</span></div></div>
+      <div class="matricule st-dispa" onclick="openMatricule('Wither-3')"><span class="mdot"></span><div class="minfo"><span class="mcode">Wither-3</span><span class="mspec">Bouclier</span></div><span class="mtag">DISP.</span></div>
+      <div class="matricule" onclick="openMatricule('Wither-4')"><span class="mdot"></span><div class="minfo"><span class="mcode">Wither-4</span><span class="mspec">Exécuteur</span></div></div>
+      <div class="matricule" onclick="openMatricule('Wither-5')"><span class="mdot"></span><div class="minfo"><span class="mcode">Wither-5</span><span class="mspec">Exécuteur</span></div></div>
+      <div class="matricule st-dispa" onclick="openMatricule('Wither-6')"><span class="mdot"></span><div class="minfo"><span class="mcode">Wither-6</span><span class="mspec">Exécuteur</span></div><span class="mtag">DISP.</span></div>
+      <div class="matricule" onclick="openMatricule('Wither-7')"><span class="mdot"></span><div class="minfo"><span class="mcode">Wither-7</span><span class="mspec">Analyste SCP</span></div></div>
+      <div class="matricule" onclick="openMatricule('Wither-8')"><span class="mdot"></span><div class="minfo"><span class="mcode">Wither-8</span><span class="mspec">Médecin de guerre</span></div></div>
+      <div class="matricule st-dispa" onclick="openMatricule('Wither-9')"><span class="mdot"></span><div class="minfo"><span class="mcode">Wither-9</span><span class="mspec">Technicien</span></div><span class="mtag">DISP.</span></div>
+      <div class="matricule" onclick="openMatricule('Wither-10')"><span class="mdot"></span><div class="minfo"><span class="mcode">Wither-10</span><span class="mspec">Éclaireur</span></div></div>
+    </div>
+
+    <div class="section-title">Ombres</div>
+    <p class="roster-sub">Opérateurs spécialisés · Matricules Ombre-1 à Ombre-30</p>
+    <div class="matricule-grid">
+      <div class="matricule" onclick="openMatricule('Ombre-1')"><span class="mdot"></span><div class="minfo"><span class="mcode">Ombre-1</span><span class="mspec">Éclaireur</span></div></div>
+      <div class="matricule" onclick="openMatricule('Ombre-2')"><span class="mdot"></span><div class="minfo"><span class="mcode">Ombre-2</span><span class="mspec">Éclaireur</span></div></div>
+      <div class="matricule" onclick="openMatricule('Ombre-3')"><span class="mdot"></span><div class="minfo"><span class="mcode">Ombre-3</span><span class="mspec">Éclaireur</span></div></div>
+      <div class="matricule" onclick="openMatricule('Ombre-4')"><span class="mdot"></span><div class="minfo"><span class="mcode">Ombre-4</span><span class="mspec">Éclaireur</span></div></div>
+      <div class="matricule st-dispa" onclick="openMatricule('Ombre-5')"><span class="mdot"></span><div class="minfo"><span class="mcode">Ombre-5</span><span class="mspec">Éclaireur</span></div><span class="mtag">DISP.</span></div>
+      <div class="matricule" onclick="openMatricule('Ombre-6')"><span class="mdot"></span><div class="minfo"><span class="mcode">Ombre-6</span><span class="mspec">Bouclier</span></div></div>
+      <div class="matricule st-mort" onclick="openMatricule('Ombre-7')"><span class="mdot"></span><div class="minfo"><span class="mcode">Ombre-7</span><span class="mspec">Bouclier</span></div><span class="mtag">†</span></div>
+      <div class="matricule" onclick="openMatricule('Ombre-8')"><span class="mdot"></span><div class="minfo"><span class="mcode">Ombre-8</span><span class="mspec">Bouclier</span></div></div>
+      <div class="matricule" onclick="openMatricule('Ombre-9')"><span class="mdot"></span><div class="minfo"><span class="mcode">Ombre-9</span><span class="mspec">Bouclier</span></div></div>
+      <div class="matricule" onclick="openMatricule('Ombre-10')"><span class="mdot"></span><div class="minfo"><span class="mcode">Ombre-10</span><span class="mspec">Bouclier</span></div></div>
+      <div class="matricule" onclick="openMatricule('Ombre-11')"><span class="mdot"></span><div class="minfo"><span class="mcode">Ombre-11</span><span class="mspec">Exécuteur</span></div></div>
+      <div class="matricule st-mission" onclick="openMatricule('Ombre-12')"><span class="mdot"></span><div class="minfo"><span class="mcode">Ombre-12</span><span class="mspec">Exécuteur</span></div><span class="mtag">MISS.</span></div>
+      <div class="matricule" onclick="openMatricule('Ombre-13')"><span class="mdot"></span><div class="minfo"><span class="mcode">Ombre-13</span><span class="mspec">Exécuteur</span></div></div>
+      <div class="matricule st-dispa" onclick="openMatricule('Ombre-14')"><span class="mdot"></span><div class="minfo"><span class="mcode">Ombre-14</span><span class="mspec">Exécuteur</span></div><span class="mtag">DISP.</span></div>
+      <div class="matricule" onclick="openMatricule('Ombre-15')"><span class="mdot"></span><div class="minfo"><span class="mcode">Ombre-15</span><span class="mspec">Exécuteur</span></div></div>
+      <div class="matricule" onclick="openMatricule('Ombre-16')"><span class="mdot"></span><div class="minfo"><span class="mcode">Ombre-16</span><span class="mspec">Analyste SCP</span></div></div>
+      <div class="matricule" onclick="openMatricule('Ombre-17')"><span class="mdot"></span><div class="minfo"><span class="mcode">Ombre-17</span><span class="mspec">Analyste SCP</span></div></div>
+      <div class="matricule" onclick="openMatricule('Ombre-18')"><span class="mdot"></span><div class="minfo"><span class="mcode">Ombre-18</span><span class="mspec">Analyste SCP</span></div></div>
+      <div class="matricule st-blesse" onclick="openMatricule('Ombre-19')"><span class="mdot"></span><div class="minfo"><span class="mcode">Ombre-19</span><span class="mspec">Analyste SCP</span></div><span class="mtag">BLES.</span></div>
+      <div class="matricule" onclick="openMatricule('Ombre-20')"><span class="mdot"></span><div class="minfo"><span class="mcode">Ombre-20</span><span class="mspec">Analyste SCP</span></div></div>
+      <div class="matricule" onclick="openMatricule('Ombre-21')"><span class="mdot"></span><div class="minfo"><span class="mcode">Ombre-21</span><span class="mspec">Médecin de Guerre</span></div></div>
+      <div class="matricule st-rech" onclick="openMatricule('Ombre-22')"><span class="mdot"></span><div class="minfo"><span class="mcode">Ombre-22</span><span class="mspec">Médecin de Guerre</span></div><span class="mtag">RECH.</span></div>
+      <div class="matricule" onclick="openMatricule('Ombre-23')"><span class="mdot"></span><div class="minfo"><span class="mcode">Ombre-23</span><span class="mspec">Médecin de Guerre</span></div></div>
+      <div class="matricule" onclick="openMatricule('Ombre-24')"><span class="mdot"></span><div class="minfo"><span class="mcode">Ombre-24</span><span class="mspec">Médecin de Guerre</span></div></div>
+      <div class="matricule" onclick="openMatricule('Ombre-25')"><span class="mdot"></span><div class="minfo"><span class="mcode">Ombre-25</span><span class="mspec">Médecin de Guerre</span></div></div>
+      <div class="matricule st-mission" onclick="openMatricule('Ombre-26')"><span class="mdot"></span><div class="minfo"><span class="mcode">Ombre-26</span><span class="mspec">Technicien</span></div><span class="mtag">MISS.</span></div>
+      <div class="matricule" onclick="openMatricule('Ombre-27')"><span class="mdot"></span><div class="minfo"><span class="mcode">Ombre-27</span><span class="mspec">Technicien</span></div></div>
+      <div class="matricule" onclick="openMatricule('Ombre-28')"><span class="mdot"></span><div class="minfo"><span class="mcode">Ombre-28</span><span class="mspec">Technicien</span></div></div>
+      <div class="matricule" onclick="openMatricule('Ombre-29')"><span class="mdot"></span><div class="minfo"><span class="mcode">Ombre-29</span><span class="mspec">Technicien</span></div></div>
+      <div class="matricule st-coma" onclick="openMatricule('Ombre-30')"><span class="mdot"></span><div class="minfo"><span class="mcode">Ombre-30</span><span class="mspec">Technicien</span></div><span class="mtag">COMA</span></div>
+    </div>
+
+    <div class="section-title">Fantômes</div>
+    <p class="roster-sub">En période d'observation · Matricules Fantôme-1 à Fantôme-20</p>
+    <div class="matricule-grid">
+      <div class="matricule" onclick="openMatricule('Fantôme-1')"><span class="mdot"></span><div class="minfo"><span class="mcode">Fantôme-1</span><span class="mspec">En observation</span></div></div>
+      <div class="matricule" onclick="openMatricule('Fantôme-2')"><span class="mdot"></span><div class="minfo"><span class="mcode">Fantôme-2</span><span class="mspec">En observation</span></div></div>
+      <div class="matricule" onclick="openMatricule('Fantôme-3')"><span class="mdot"></span><div class="minfo"><span class="mcode">Fantôme-3</span><span class="mspec">En observation</span></div></div>
+      <div class="matricule st-blesse" onclick="openMatricule('Fantôme-4')"><span class="mdot"></span><div class="minfo"><span class="mcode">Fantôme-4</span><span class="mspec">En observation</span></div><span class="mtag">BLES.</span></div>
+      <div class="matricule" onclick="openMatricule('Fantôme-5')"><span class="mdot"></span><div class="minfo"><span class="mcode">Fantôme-5</span><span class="mspec">En observation</span></div></div>
+      <div class="matricule" onclick="openMatricule('Fantôme-6')"><span class="mdot"></span><div class="minfo"><span class="mcode">Fantôme-6</span><span class="mspec">En observation</span></div></div>
+      <div class="matricule" onclick="openMatricule('Fantôme-7')"><span class="mdot"></span><div class="minfo"><span class="mcode">Fantôme-7</span><span class="mspec">En observation</span></div></div>
+      <div class="matricule st-mort" onclick="openMatricule('Fantôme-8')"><span class="mdot"></span><div class="minfo"><span class="mcode">Fantôme-8</span><span class="mspec">En observation</span></div><span class="mtag">†</span></div>
+      <div class="matricule" onclick="openMatricule('Fantôme-9')"><span class="mdot"></span><div class="minfo"><span class="mcode">Fantôme-9</span><span class="mspec">En observation</span></div></div>
+      <div class="matricule" onclick="openMatricule('Fantôme-10')"><span class="mdot"></span><div class="minfo"><span class="mcode">Fantôme-10</span><span class="mspec">En observation</span></div></div>
+      <div class="matricule" onclick="openMatricule('Fantôme-11')"><span class="mdot"></span><div class="minfo"><span class="mcode">Fantôme-11</span><span class="mspec">En observation</span></div></div>
+      <div class="matricule" onclick="openMatricule('Fantôme-12')"><span class="mdot"></span><div class="minfo"><span class="mcode">Fantôme-12</span><span class="mspec">En observation</span></div></div>
+      <div class="matricule" onclick="openMatricule('Fantôme-13')"><span class="mdot"></span><div class="minfo"><span class="mcode">Fantôme-13</span><span class="mspec">En observation</span></div></div>
+      <div class="matricule" onclick="openMatricule('Fantôme-14')"><span class="mdot"></span><div class="minfo"><span class="mcode">Fantôme-14</span><span class="mspec">En observation</span></div></div>
+      <div class="matricule" onclick="openMatricule('Fantôme-15')"><span class="mdot"></span><div class="minfo"><span class="mcode">Fantôme-15</span><span class="mspec">En observation</span></div></div>
+      <div class="matricule st-susp" onclick="openMatricule('Fantôme-16')"><span class="mdot"></span><div class="minfo"><span class="mcode">Fantôme-16</span><span class="mspec">En observation</span></div><span class="mtag">SUSP.</span></div>
+      <div class="matricule" onclick="openMatricule('Fantôme-17')"><span class="mdot"></span><div class="minfo"><span class="mcode">Fantôme-17</span><span class="mspec">En observation</span></div></div>
+      <div class="matricule" onclick="openMatricule('Fantôme-18')"><span class="mdot"></span><div class="minfo"><span class="mcode">Fantôme-18</span><span class="mspec">En observation</span></div></div>
+      <div class="matricule" onclick="openMatricule('Fantôme-19')"><span class="mdot"></span><div class="minfo"><span class="mcode">Fantôme-19</span><span class="mspec">En observation</span></div></div>
+      <div class="matricule" onclick="openMatricule('Fantôme-20')"><span class="mdot"></span><div class="minfo"><span class="mcode">Fantôme-20</span><span class="mspec">En observation</span></div></div>
+    </div>
+  </div>
+
+  <footer>
+    <p class="footer-accent">☠ CHILDREN OF OBLIVION ☠</p>
+    <p>COO-UNIT-01 · Effectifs · 7 survivants. 1 serment. Aucun retour.</p>
+    <p>L'Oubli n'est pas une punition. C'est une arme.</p>
+    <p class="footer-legal">
+      <a onclick="showPage('legal')">Mentions légales</a> ·
+      <a onclick="showPage('legal')">Confidentialité</a> ·
+      <a onclick="showPage('legal')">Crédits et licence</a>
+    </p>
+  </footer>
+</div>
+
+<!-- RECHERCHE -->
+<div class="search-overlay" id="search-overlay" onclick="if(event.target===this)closeSearch()">
+  <div class="search-box">
+    <input type="text" id="search-input" placeholder="Rechercher dans le dossier…" oninput="runSearch(this.value)" autocomplete="off" spellcheck="false">
+    <div class="search-results" id="search-results"></div>
+  </div>
+</div>
+
+<!-- MODALE BADGE -->
+<div class="modal-overlay" id="profil-modal" onclick="if(event.target===this)closeProfil()">
+  <div class="modal-box profil-box">
+    <button type="button" class="modal-close" onclick="closeProfil()" aria-label="Fermer">&times;</button>
+    <div class="profil-head">
+      <div class="profil-avatar" id="profil-avatar"></div>
+      <div>
+        <div class="profil-nom" id="profil-nom"></div>
+        <div class="profil-handle" id="profil-handle"></div>
+        <div class="profil-role" id="profil-role"></div>
+      </div>
+    </div>
+    <div class="profil-corps" id="profil-corps"></div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="badge-modal" onclick="if(event.target===this)closeBadge()">
+  <div class="modal-box">
+    <button type="button" class="modal-close" onclick="closeBadge()" aria-label="Fermer">×</button>
+    <div class="modal-eyebrow" id="badge-eyebrow">COO-UNIT-01 · Doctrine de l'Ombre</div>
+    <div class="modal-title" id="badge-title"></div>
+    <div class="modal-text" id="badge-text"></div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+<script src="dossiers.js"></script>
+</body>
+</html>
