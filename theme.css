@@ -1,0 +1,37 @@
+/* Mode clair : palette tirée du logo (violet profond de l'anneau, lune lilas, indigo nuit). Le mode sombre reste le défaut. */
+html[data-theme="light"] {
+  color-scheme: light;
+  --black: #f3eff8;
+  --deep: #ebe5f3;
+  --panel: #ffffff;
+  --card: #fbf9fd;
+  --border: #d5cae3;
+  --accent: #5b3a8c;
+  --accent2: #5b3a8c;
+  --red: #a8281c;
+  --text: #2b2440;
+  --text-dim: #5f5778;
+  --text-bright: #130c26;
+}
+html[data-theme="light"] body::before { background: none; }
+html[data-theme="light"] nav { background: rgba(255,255,255,0.92); }
+html[data-theme="light"] .acces-terminal,
+html[data-theme="light"] .boot,
+html[data-theme="light"] #boot,
+html[data-theme="light"] .session-lock,
+html[data-theme="light"] #session-lock {
+  --black: #0a0a0f; --deep: #0f0f1a; --panel: #13131f; --card: #161625; --border: #1e1e35;
+  --accent: #6c5ce7; --accent2: #a29bfe; --text: #c8c8d8; --text-dim: #8a8aa6; --text-bright: #eeeef8;
+}
+html[data-theme="light"] .dos-warn { background: rgba(168,40,28,.07); border-color: rgba(168,40,28,.4); color: #8c2117; }
+html[data-theme="light"] .dos-bar { background: rgba(43,36,64,.12); }
+html[data-theme="light"] .dos-note { background: rgba(201,138,0,.12); }
+
+/* Bouton de bascule */
+.theme-toggle { background: none; border: 1px solid var(--border); color: var(--text-dim); width: 34px; height: 34px; border-radius: 4px; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; padding: 0; flex-shrink: 0; transition: color .2s, border-color .2s; }
+.theme-toggle:hover, .theme-toggle:focus-visible { color: var(--accent2); border-color: var(--accent); outline: none; }
+.theme-toggle svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.theme-toggle .i-sun { display: none; }
+html[data-theme="light"] .theme-toggle .i-sun { display: block; }
+html[data-theme="light"] .theme-toggle .i-moon { display: none; }
+html[data-theme="light"] .scanlines { display: none; }
